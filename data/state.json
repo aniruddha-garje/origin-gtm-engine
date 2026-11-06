@@ -243,8 +243,8 @@
    "changedAt": null
   },
   "e10": {
-   "hash": "12101b106f21",
-   "changedAt": null
+   "hash": "02d180ed724a",
+   "changedAt": "2026-11-06"
   },
   "e11": {
    "hash": "75544d12a5ff",
@@ -339,7 +339,7 @@
    "changedAt": null
   },
   "e20": {
-   "hash": null,
+   "hash": "d6fb385c2032",
    "changedAt": null
   },
   "e28": {
@@ -397,15 +397,15 @@
    "sources": 10,
    "sourcesOk": 10,
    "signals": 37,
-   "newSignals": 0,
+   "newSignals": 37,
    "projects": 174,
-   "newProjects": 0,
+   "newProjects": 174,
    "projectValue": 3421245373.2000012,
    "delays": 13,
    "dataCenters": 6,
    "accountsWithLive": 2,
    "discovered": 19,
-   "newDiscovered": 0
+   "newDiscovered": 19
   }
  ],
  "originClaims": {
