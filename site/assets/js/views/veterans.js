@@ -16,7 +16,7 @@ export default function veterans(root) {
     kpis: [
       { l: "Robot programs traced", v: String(R.vendors.length), s: "Canvas, Okibo, layout robots" },
       { l: "Subcontractors who ran one", v: String(subs.length), s: "Each one sourced" },
-      { l: "General contractors who ran one", v: String(gcs.length), s: "They open doors to their subs" },
+      { l: "General contractors involved", v: String(gcs.length), s: "Used, backed or hosted a robot" },
       { l: "May need a new robot", v: String(R.vetLinks.filter(l => l.v === "canvas" && !l.gc).length), s: "Canvas partners, since JLG bought its tech", hot: true }
     ]
   });
