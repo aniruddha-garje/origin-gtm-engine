@@ -1,8 +1,9 @@
 name: gtm-engine
 run-name: "${{ github.event_name == 'push' && 'publish site' || 'daily engine run' }}"
 
-# Runs the pipeline every day, saves the result to the repo, and republishes the site on GitHub Pages.
-# Needs no secrets. BLS_API_KEY is optional and only raises the wage API's daily limit.
+# Runs the pipeline every day and saves the result to the repo. No secrets needed.
+# BLS_API_KEY is optional and only raises the wage API's daily limit.
+# Publishing to GitHub Pages switches on by itself once the repo is public.
 on:
   schedule:
     - cron: "17 4 * * *"   # 04:17 UTC, 09:47 IST, before the US working day
@@ -15,18 +16,13 @@ concurrency:
   group: engine
   cancel-in-progress: false
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
-  run:
+  engine:
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,13 +30,11 @@ jobs:
           node-version: 22
 
       - name: Run the engine
-        if: github.event_name != 'push'
         env:
           BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
         run: node pipeline/run.mjs
 
       - name: Save the run
-        if: github.event_name != 'push'
         run: |
           git config user.name "gtm-engine"
           git config user.email "actions@users.noreply.github.com"
@@ -49,6 +43,21 @@ jobs:
           git pull --rebase -X theirs origin main || true
           git push
 
+  publish:
+    needs: engine
+    if: ${{ always() && !github.event.repository.private && (needs.engine.result == 'success' || needs.engine.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
