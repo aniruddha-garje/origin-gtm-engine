@@ -2,13 +2,24 @@
 import { h, fshort, money } from "./ui.js";
 import { G, R, S } from "./core.js";
 
-export function refs(ids) {
+/* Source chips show the publisher, not a code, so a reader can see where a fact came from. */
+const shortSrc = t => {
+  const x = t.split(":")[0].replace(/\s*\(.*$/, "").replace(/^W&C$/, "Walls & Ceilings").trim();
+  return x.length > 26 ? x.slice(0, 24).trim() + "…" : x;
+};
+export function refs(ids, max) {
   if (!ids || !ids.length) return null;
-  return h("span", { class: "refs" }, ids.map(id => {
+  const ok = ids.filter(id => G.sources[id]);
+  if (!ok.length) return null;
+  const lim = max || 2;
+  return h("span", { class: "refs" }, ok.slice(0, lim).map(id => {
     const x = G.sources[id];
-    if (!x) return null;
-    return h("a", { class: "ref", href: x[1], target: "_blank", rel: "noopener noreferrer", title: x[0], "aria-label": "Source: " + x[0] }, id);
-  }));
+    return h("a", { class: "ref", href: x[1], target: "_blank", rel: "noopener noreferrer", title: x[0], "aria-label": "Source: " + x[0] }, shortSrc(x[0]) + " ↗");
+  }), ok.length > lim ? h("a", { class: "ref", href: "#/library/sources", title: ok.slice(lim).map(id => G.sources[id][0]).join(" · ") }, "+" + (ok.length - lim)) : null);
+}
+
+export function howto(text) {
+  return h("p", { class: "howto" }, h("b", null, "How to read this"), h("span", null, text));
 }
 
 export function reasonChip(r, lead) {
@@ -36,9 +47,10 @@ export function runStamp() {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) + ", " + d.toISOString().slice(11, 16) + " UTC";
 }
 
-export function nextLink(href, label) {
-  return h("section", { class: "sec is-tight" }, h("div", { class: "wrap" },
-    h("a", { class: "pill", href }, "Next: " + label, h("span", { "aria-hidden": "true" }, " →"))));
+export function nextLink(href, label, take) {
+  return h("section", { class: "sowhat" }, h("div", { class: "wrap" },
+    take ? h("div", null, h("p", { class: "sowhat-k" }, "What this means for Origin"), h("p", { class: "sowhat-t" }, take)) : null,
+    h("a", { class: "pill is-ink", href }, "Next: " + label, h("span", { "aria-hidden": "true" }, " →"))));
 }
 
 export { money };

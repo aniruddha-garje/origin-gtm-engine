@@ -26,6 +26,29 @@ window.REASON = {
     scale: { label: "Top 50 volume", icon: "≡", about: "Enough continuous wall area to keep robots busy" }
   },
 
+  /* Plain-language tiers: what each one is and what we do with it. */
+  tierPlain: {
+    t1: { name: "Tier 1", tag: "Northeast beachhead", why: "Closest to Origin's NYC team, in the costliest finishing market.", action: "Invite to a live site walk" },
+    vet: { name: "Robot veterans", tag: "Already ran a robot", why: "They know how robots work on site, so no education is needed.", action: "Compare notes on their last program" },
+    t2: { name: "Tier 2", tag: "High wage markets", why: "West Coast, Midwest and Hawaii. Wages mostly above the US median, so cost leads.", action: "Send an ROI model for their state" },
+    t3: { name: "Tier 3", tag: "Sun Belt volume", why: "Lower wages but heavy volume. Crews are the constraint, not cost.", action: "Pitch crew capacity and schedule" }
+  },
+
+  /* The five questions behind every score. Values mirror the scoring rules in core.js. */
+  factors: [
+    { k: "size", n: "Size", max: 15, q: "How much work do they have?", rows: [["$1B+ revenue", 15], ["$300M+", 13], ["$150M+", 11], ["$100M+", 10], ["$50M+", 8], ["$30M+", 6], ["Unknown or smaller", 5]] },
+    { k: "labor", n: "Labor cost", max: 15, q: "How expensive is a finisher there?", rows: [["NYC metro", 15], ["$45+ an hour", 14], ["$37+ an hour", 12], ["$33+ an hour", 10], ["$28+ an hour", 8], ["$24+ an hour", 6], ["Under $24", 4]] },
+    { k: "prox", n: "Distance", max: 10, q: "Can the NYC team reach them?", rows: [["NYC metro", 10], ["Boston to DC corridor", 7], ["Works across regions", 5], ["Elsewhere", 3]] },
+    { k: "scope", n: "Scope fit", max: 10, q: "Is it the right kind of work?", rows: [["Wall and ceiling", 10], ["Painting", 8]] },
+    { k: "sig", n: "Signals", max: 50, q: "Is there a reason to call now?", rows: [] }
+  ],
+  priorities: [
+    { k: "balanced", n: "Balanced", d: "Every factor counts as listed." },
+    { k: "beachhead", n: "Stay near NYC", d: "Distance counts 3 times." },
+    { k: "robot", n: "Warmest first", d: "Signals count 2 times." },
+    { k: "labor", n: "Best cost case", d: "Labor cost counts 2.5 times." }
+  ],
+
   /* Why each event earned a place. */
   lenses: [
     { id: "buyer", n: "Buyers in the room", about: "The contractor's own association" },

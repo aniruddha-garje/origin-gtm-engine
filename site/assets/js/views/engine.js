@@ -166,25 +166,25 @@ export default function engine(root) {
   const hero = h("section", { class: "hero" }, cv,
     h("div", { class: "wrap hero-in" },
       h("h1", null, "A go-to-market engine for the built world"),
-      h("p", { class: "hero-sub" }, "Right market. Right reason. Right day."),
+      h("p", { class: "hero-sub" }, "Every morning it reads public data and tells Origin who to call, and why."),
       h("div", { class: "hero-row" },
-        h("a", { class: "pill", href: "#/markets" }, "Walk the reasoning →"),
-        h("p", { class: "hero-note" }, "Every bright dot is a real contractor. Sorted daily."))));
+        h("a", { class: "pill", href: "#/markets" }, "See how it works →"),
+        h("p", { class: "hero-note" }, "Each bright dot is a real contractor, sorted into a tier"))));
 
   const status = h("div", { class: "status", role: "status" }, h("div", { class: "status-in" },
-    h("span", null, h("i", { class: "live-dot" }), " Last run ", h("b", null, runStamp())),
-    h("span", null, h("b", null, (C.sourcesOk || 0) + "/" + (C.sources || 0)), " sources healthy"),
-    h("span", null, h("b", null, money(C.projectValue || 0)), " interior work tracked"),
-    h("span", null, h("b", null, C.delays || 0), " projects lagging"),
-    h("span", null, h("b", null, C.discovered || 0), " new names found")));
+    h("span", null, h("i", { class: "live-dot" }), " Last updated ", h("b", null, runStamp())),
+    h("span", null, h("b", null, (C.sourcesOk || 0) + " of " + (C.sources || 0)), " data sources updated"),
+    h("span", null, h("b", null, money(C.projectValue || 0)), " of interior work tracked"),
+    h("span", null, h("b", null, C.delays || 0), " delayed projects found"),
+    h("span", null, h("b", null, C.discovered || 0), " new contractors found")));
 
   /* the model */
   const fedHits = L && L.federal ? Object.keys(L.federal.matches || {}).length : 0;
   const inputs = [
     ["#/markets", "Wage survey", "BLS, every state", (L && L.wages ? Object.keys(L.wages.states).length : G.wages.length) + " states"],
     ["#/signals", "Permits and filings", "NYC, Chicago, Seattle, Austin, Texas", (C.projects || 0) + " jobs"],
-    ["#/signals", "Federal subcontracts", "USAspending", (fedHits + (C.discovered || 0)) + " names"],
-    ["#/signals", "News scan", "Delays, robots, data centers", (C.signals || 0) + " items"],
+    ["#/signals", "Federal subcontracts", "USAspending", (fedHits + (C.discovered || 0)) + " firms"],
+    ["#/signals", "News scan", "Delays, robots, data centers", (C.signals || 0) + " headlines"],
     ["#/events", "Event pages", "Dates, prices, deadlines", G.events.length + " shows"]
   ];
   const counts = {}; accts.forEach(a => { counts[a.tier] = (counts[a.tier] || 0) + 1; });
@@ -192,24 +192,24 @@ export default function engine(root) {
   const svg = s("svg", { class: "model-svg", "aria-hidden": "true" });
   const model = h("div", { class: "model rv" }, svg,
     h("div", { class: "model-grid" },
-      h("div", { class: "model-col" }, h("h3", null, "Daily inputs"),
+      h("div", { class: "model-col" }, h("h3", null, "1. What it reads every morning"),
         h("div", { class: "mcards" }, inputs.map(i => h("a", { class: "mcard m-in", href: i[0] }, h("span", null, h("b", null, i[1]), h("small", null, i[2])), h("em", null, i[3]))))),
-      h("div", { class: "model-col" }, h("h3", null, "Go-to-market model"),
+      h("div", { class: "model-col" }, h("h3", null, "2. How it reasons"),
         h("div", { class: "mcore" },
-          h("a", { class: "mstage", href: "#/markets" }, h("div", null, h("h4", null, "Where"), h("p", null, "Choose the market")),
-            h("ul", null, h("li", null, "Wage against break-even"), h("li", null, statesAbove + " of " + G.wages.length + " states sell on cost"))),
-          h("a", { class: "mstage", href: "#/segments" }, h("div", null, h("h4", null, "Who"), h("p", null, "Choose the buyer")),
+          h("a", { class: "mstage", href: "#/markets" }, h("div", null, h("h4", null, "Where"), h("p", null, "Which market pays?")),
+            h("ul", null, h("li", null, "Wage against break-even"), h("li", null, "Cost wins in " + statesAbove + " of " + G.wages.length + " states"))),
+          h("a", { class: "mstage", href: "#/segments" }, h("div", null, h("h4", null, "Who"), h("p", null, "Which buyer signs?")),
             h("ul", null, h("li", null, "Sub, not GC"), h("li", null, "Ops leader is the champion"), h("li", null, "Super holds the veto"))),
-          h("a", { class: "mstage", href: "#/signals" }, h("div", null, h("h4", null, "When"), h("p", null, "Choose the moment")),
+          h("a", { class: "mstage", href: "#/signals" }, h("div", null, h("h4", null, "When"), h("p", null, "Why call now?")),
             h("ul", null, h("li", null, "Robot history"), h("li", null, "Project pressure"), h("li", null, "Events and deadlines"))),
-          h("a", { class: "mstage", href: "#/segments" }, h("div", null, h("h4", null, "Score"), h("p", null, "Rank within a tier")),
+          h("a", { class: "mstage", href: "#/segments" }, h("div", null, h("h4", null, "Score"), h("p", null, "Who do we call first?")),
             h("div", null,
               h("div", { class: "mbars", "aria-hidden": "true" }, [["15", 0], ["15", 0], ["10", 0], ["10", 0], ["50", 1]].map(b => h("span", { class: b[1] ? "is-o" : "", style: "flex:" + b[0] }))),
-              h("div", { class: "mlegend" }, h("span", null, "Size 15"), h("span", null, "Labor 15"), h("span", null, "Reach 10"), h("span", null, "Scope 10"), h("span", null, "Signals 50")))))),
-      h("div", { class: "model-col" }, h("h3", null, "Four tiers"),
+              h("div", { class: "mlegend" }, h("span", null, "Size 15 + Labor 15 + Distance 10 + Scope 10 + Signals 50 = 100 points")))))),
+      h("div", { class: "model-col" }, h("h3", null, "3. Who to call (contractors)"),
         h("div", { class: "mcards" }, outputs.map(o => h("a", { class: "mcard m-out", href: "#/prospects?tier=" + o[0] }, h("span", null, h("b", null, o[1]), h("small", null, o[2])), h("em", null, counts[o[0]] || 0))),
           h("a", { class: "mcard", href: "#/prospects", style: "background:#101010;color:#fff;border-color:#101010" }, h("span", null, h("b", null, "Personalised outbound"), h("small", { style: "color:rgba(255,255,255,.65)" }, "One reason per name")), h("em", { style: "color:#fd583a" }, "→"))))),
-    h("div", { class: "mloop" }, h("h3", null, "Learning loop"),
+    h("div", { class: "mloop" }, h("h3", null, "4. Gets smarter"),
       h("div", { class: "mloop-track" },
         h("div", null, h("b", null, "Replies"), "Which reason opened the door"),
         h("div", null, h("b", null, "Site walks"), "Which tier converts"),
@@ -217,38 +217,38 @@ export default function engine(root) {
         h("div", null, h("b", null, "Reweight"), "Scores and plays update"))));
 
   const sec1 = h("section", { class: "sec" }, h("div", { class: "wrap" },
-    h("p", { class: "sec-eye" }, "GTM action model"),
-    h("header", { class: "sec-head" }, h("h2", null, "One model, run every day"), h("p", { class: "sec-lede" }, "From public data to a named reason to call. Click any box.")),
+    h("p", { class: "sec-eye" }, "How it works"),
+    h("header", { class: "sec-head" }, h("h2", null, "Reads. Reasons. Recommends."), h("p", { class: "sec-lede" }, "The same steps run automatically every morning. Click any box for the detail.")),
     model));
 
   /* why is a name here */
   const scored = accts.map(a => ({ a, rs: reasonsFor(a, score(a)) }));
   const has = k => scored.filter(x => x.rs.some(r => r.k === k)).length;
   const whys = [
-    { k: has("robot"), t: "Tried robots", b: "Know the operating model. Skip the education.", href: "#/veterans", s: "Open the trail" },
-    { k: has("wage"), t: "Wage is high", b: "Finisher hours above the US median of " + usd2(G.wageNational) + ".", href: "#/markets", s: "See the map" },
-    { k: C.delays || 0, t: "Project lagging", b: "Reported delays in live markets. Recovery needs capacity.", href: "#/signals?kind=delay", s: "See the jobs" },
-    { k: C.dataCenters || 0, t: "Data center fit-outs", b: "Long continuous walls on tight schedules, filed this month.", href: "#/signals?kind=dc", s: "See the filings" }
+    { k: has("robot"), u: "contractors", t: "Tried robots", b: "Have already run a robot on a job, so no education is needed.", href: "#/veterans", s: "See who" },
+    { k: has("wage"), u: "contractors", t: "High wage", b: "Finishers there earn above the US median of " + usd2(G.wageNational) + " an hour.", href: "#/markets", s: "See the map" },
+    { k: C.delays || 0, u: "delayed projects", t: "Project lagging", b: "Reported in US markets. Catching up takes crew capacity.", href: "#/signals?kind=delay", s: "See the jobs" },
+    { k: C.dataCenters || 0, u: "data center jobs", t: "Data center work", b: "Long continuous walls on tight schedules, filed in Texas.", href: "#/signals?kind=dc", s: "See the filings" }
   ];
   const sec2 = h("section", { class: "sec is-white" }, h("div", { class: "wrap" },
     h("p", { class: "sec-eye" }, "The reason test"),
-    h("header", { class: "sec-head" }, h("h2", null, "No name without a reason"), h("p", { class: "sec-lede" }, "Every contractor and every event on this site carries the reason it is here.")),
+    h("header", { class: "sec-head" }, h("h2", null, "No name without a reason"), h("p", { class: "sec-lede" }, "A contractor only makes the list for a reason we can show. These are the four big ones.")),
     h("div", { class: "whys rv" }, whys.map(w => h("a", { class: "why", href: w.href },
-      h("span", { class: "why-k" }, w.k),
+      h("span", { class: "why-k" }, w.k, h("small", null, w.u)),
       h("span", null, h("span", { class: "why-t" }, w.t), h("p", { class: "why-b" }, w.b), h("small", null, w.s + " →")))))));
 
   /* latest */
   const items = L ? L.signals.filter(x => ["delay", "dc", "robot", "layout", "labor"].includes(x.kind)).slice(0, 7) : [];
   const sec3 = h("section", { class: "sec is-dark" }, h("div", { class: "wrap" },
     h("p", { class: "sec-eye" }, "Latest run"),
-    h("header", { class: "sec-head" }, h("h2", null, "What the engine saw"), h("p", { class: "sec-lede" }, "Pulled from public sources this morning, sorted by what it means for a finishing contractor.")),
+    h("header", { class: "sec-head" }, h("h2", null, "What the engine saw"), h("p", { class: "sec-lede" }, "Pulled from public sources on the last run. The label on the left says why it matters. An orange dot means new since the last run.")),
     h("div", { class: "feed rv" }, items.map(x => feedItem(x, L.runDay))),
     h("p", { style: "margin-top:22px" }, h("a", { class: "pill", href: "#/signals" }, "All signals →"))));
 
   /* the walk */
-  const path = [["markets", "Where", "Wages against break-even"], ["segments", "Who", "The buyer and the score"], ["veterans", "Who has tried", "The robot trail"], ["signals", "When", "Live signals"], ["events", "Where to meet", "Every show, with a reason"], ["prospects", "Act", "Four tiers, personalised"], ["next", "Then", "Any trade"]];
+  const path = [["markets", "Markets", "Where does the robot pay off?"], ["segments", "Segments", "Who buys, and who first?"], ["veterans", "Veterans", "Who already tried robots?"], ["signals", "Signals", "Why call today?"], ["events", "Events", "Where do we meet them?"], ["prospects", "Prospects", "Who do we contact?"], ["next", "Any trade", "What comes next?"]];
   const sec4 = h("section", { class: "sec" }, h("div", { class: "wrap" },
-    h("header", { class: "sec-head" }, h("h2", null, "Follow the thinking"), h("p", { class: "sec-lede" }, "Seven stops. " + money(ev.committed) + " event plan. " + accts.length + " prospects ready to work.")),
+    h("header", { class: "sec-head" }, h("h2", null, "Seven questions, in order"), h("p", { class: "sec-lede" }, "Read the site in this order. It ends with " + accts.length + " contractors ready to contact and a " + money(ev.committed) + " event plan.")),
     h("ol", { class: "method rv", style: "grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px 20px" }, path.map((p, i) => h("li", null,
       h("span", { class: "method-n" }, String(i + 1).padStart(2, "0")),
       h("h3", null, h("a", { href: "#/" + p[0], style: "text-decoration:none" }, p[1] + " →")),

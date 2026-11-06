@@ -14,10 +14,10 @@ export default function veterans(root) {
     no: "03", label: "Robot veterans", title: "Who has already put a robot on a job?",
     answer: h("span", null, "We started from the vendors, not the contractors. Then asked one question: ", h("strong", null, "are they free to run another?")),
     kpis: [
-      { l: "Robot programs traced", v: String(R.vendors.length) },
-      { l: "Subs with robot history", v: String(subs.length), s: "Each one sourced" },
-      { l: "GCs with robot history", v: String(gcs.length), s: "They pull work through" },
-      { l: "Between programs", v: String(R.vetLinks.filter(l => l.v === "canvas" && !l.gc).length), s: "Canvas partners since the JLG deal", hot: true }
+      { l: "Robot programs traced", v: String(R.vendors.length), s: "Canvas, Okibo, layout robots" },
+      { l: "Subcontractors who ran one", v: String(subs.length), s: "Each one sourced" },
+      { l: "General contractors who ran one", v: String(gcs.length), s: "They open doors to their subs" },
+      { l: "May need a new robot", v: String(R.vetLinks.filter(l => l.v === "canvas" && !l.gc).length), s: "Canvas partners, since JLG bought its tech", hot: true }
     ]
   });
 
@@ -38,7 +38,7 @@ export default function veterans(root) {
   }));
   const row = p => {
     const e = h(p.acct ? "a" : "div", { class: "gc", href: p.acct ? "#/prospects?tier=" + (G.accounts.find(a => a.id === p.acct) || {}).tier : null },
-      h("span", null, p.n, h("small", null, p.links.map(l => l.role).join(". "))), refs([...new Set(p.links.flatMap(l => l.src))].slice(0, 2)));
+      h("span", null, p.n, h("small", null, p.links.map(l => l.role).join(". "))), refs([...new Set(p.links.flatMap(l => l.src))], 1));
     pEls[p.n] = e;
     return e;
   };
@@ -46,7 +46,7 @@ export default function veterans(root) {
     h("p", { class: "card-t", style: "margin:0 0 4px" }, "Subcontractors"), subs.map(row),
     h("p", { class: "card-t", style: "margin:12px 0 4px" }, "General contractors"), gcs.map(row));
   const graph = h("div", { class: "graph rv" }, svg, h("div", { class: "graph-grid" }, vend, right));
-  const gSec = sec("The trail", "Hover a program to see who ran it.", { cls: "is-dark" });
+  const gSec = sec("The trail", "Left: the robot programs. Right: who ran them, with the source. Hover a program to trace it.", { cls: "is-dark" });
   gSec.body.append(graph);
 
   let lines = [];
@@ -86,7 +86,7 @@ export default function veterans(root) {
 
   root.append(head, how, gSec, tl, ls);
   if (liveSec) root.append(liveSec);
-  root.append(nextLink("#/signals", "what fires today"));
+  root.append(nextLink("#/signals", "why call today", "Four contractors who ran Canvas may be looking for their next robot. They are the warmest calls on the list."));
   requestAnimationFrame(draw);
   const ro = new ResizeObserver(draw);
   ro.observe(graph);

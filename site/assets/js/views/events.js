@@ -21,7 +21,7 @@ export default function events(root) {
       h("div", { class: "kpi" }, h("dt", null, "Shows reviewed"), h("dd", null, String(G.events.length)), h("span", { class: "kpi-s" }, "Nov 2026 to Sep 2027")),
       h("div", { class: "kpi" }, h("dt", null, "Committed plan"), kCommitted, h("span", { class: "kpi-s" }, head0.n + " events")),
       h("div", { class: "kpi" }, h("dt", null, "Conditional"), kCond, h("span", { class: "kpi-s" }, "Paper accepted, Saudi pilot converts")),
-      h("div", { class: "kpi is-hot" }, h("dt", null, "The one booth"), h("dd", null, daysTo(top.start) + " days"), h("span", { class: "kpi-s" }, top.n.replace(" Convention & Expo", "") + ", Grapevine TX")))));
+      h("div", { class: "kpi is-hot" }, h("dt", null, "Until the one booth"), h("dd", null, daysTo(top.start) + " days"), h("span", { class: "kpi-s" }, top.n.replace(" Convention & Expo", "") + ", Grapevine TX")))));
 
   const how = sec("How we found them", null, { cls: "is-white" });
   how.body.append(steps(R.eventPaths));
@@ -29,7 +29,7 @@ export default function events(root) {
   /* timeline */
   const tip = h("div", { class: "tip", role: "status" });
   const tlBox = h("div", { class: "evtl" });
-  const tlSec = sec("The year on one line", "Rows are the reason. Size is the spend.", { cls: "is-dark" });
+  const tlSec = sec("The year on one line", "Each dot is one show. The row says why we go. A bigger dot means more money.", { cls: "is-dark" });
   tlSec.body.append(h("div", { class: "card is-dark rv" }, tlBox,
     h("div", { class: "legend" },
       h("span", null, h("i", { style: "background:#fd583a;border-radius:50%" }), "Booth"),
@@ -84,8 +84,8 @@ export default function events(root) {
   }
 
   /* ladder */
-  const ladSec = sec("Buyer fit decides the spend", "The closer the buyer, the more we bring.");
-  ladSec.body.append(h("div", { class: "ladder rv" }, R.fitLadder.map(l => {
+  const ladSec = sec("Buyer fit decides the spend", "We rate each show from 1 to 5 on how many drywall buyers attend. More buyers, more we bring.");
+  ladSec.body.append(h("div", { class: "ladder rv" }, h("div", { class: "lad is-head" }, h("span", null, "Buyer fit"), h("span", null, "What we do"), h("span", null, "Shows")), R.fitLadder.map(l => {
     const names = G.events.filter(e => e.fit === l.fit).map(e => e.n.replace(" Convention & Expo", "").replace(" Annual Meeting", ""));
     return h("div", { class: "lad" },
       h("div", { class: "lad-f", role: "img", "aria-label": "Fit " + l.fit + " of 5" }, [1, 2, 3, 4, 5].map(i => h("i", { class: i <= l.fit ? "is-on" : "" }))),
@@ -98,9 +98,9 @@ export default function events(root) {
   const dlSec = sec("Money and clocks", null, { cls: "is-dark" });
   dlSec.body.append(h("div", { class: "grid2 rv" },
     h("div", { class: "card is-dark" }, h("p", { class: "card-t" }, "Next deadlines"),
-      upcoming.slice(0, 6).map(d => h("div", { class: "dl" }, h("b", null, dueText(d.date).replace(" days", "d")), h("span", null, d.what), h("small", null, fdate(d.date))))),
+      upcoming.slice(0, 6).map(d => h("div", { class: "dl" }, h("b", null, dueText(d.date)), h("span", null, d.what), h("small", null, fdate(d.date))))),
     h("div", { class: "card is-dark" }, h("p", { class: "card-t" }, "Spend by quarter"), spend,
-      h("p", { class: "fineprint", style: "color:rgba(255,255,255,.6);margin-top:14px" }, "Planning numbers, not quotes. Change a plan below and this updates."))));
+      h("p", { class: "fineprint", style: "color:rgba(255,255,255,.6);margin-top:14px" }, "Solid: committed. Striped: only if a condition is met. Planning numbers, not quotes."))));
   function drawSpend() {
     const t = evTotals();
     const qs = Object.keys(t.q).filter(k => k !== "TBD").sort((a, b) => { const x = a.split(" "), y = b.split(" "); return (+x[1] - +y[1]) || (x[0] < y[0] ? -1 : 1); });
@@ -149,10 +149,10 @@ export default function events(root) {
         h("p", { class: "evc-why" }, e.why),
         h("div", { class: "evc-m" },
           h("span", { class: "chip is-lead" }, l.n),
-          h("span", { class: "lad-f", role: "img", "aria-label": "Buyer fit " + e.fit + " of 5", title: "Buyer fit " + e.fit + " of 5" }, [1, 2, 3, 4, 5].map(i => h("i", { class: i <= e.fit ? "is-on" : "" }))),
+          h("span", { class: "evc-fit" }, h("span", { class: "lad-f", "aria-hidden": "true" }, [1, 2, 3, 4, 5].map(i => h("i", { class: i <= e.fit ? "is-on" : "" }))), "Buyer fit " + e.fit + " of 5"),
           watch),
         small(collapse("Audience and cost basis", h("div", { class: "fineprint" }, h("p", null, e.aud), h("p", { style: "margin-top:4px" }, e.cost, " ", refs(e.src)), (e.dl || []).map(d => h("p", { style: "margin-top:4px" }, h("strong", null, d[0] ? fdate(d[0]) : "Now"), ": " + d[1])))))),
-      h("div", { class: "evc-plan" }, cost, h("div", { class: "row2", style: "margin:0;grid-template-columns:1fr 62px" }, sel, ppl)));
+      h("div", { class: "evc-plan" }, cost, h("div", { class: "row2", style: "margin:0;grid-template-columns:1fr 66px" }, field("Plan", sel), field("People", ppl))));
   }
   function drawCards() {
     put(filter, [["all", "All"], ...R.lenses.map(l => [l.id, l.n])].map(o => {
@@ -191,7 +191,7 @@ export default function events(root) {
       costInput("Light booth services ($)", () => C.lightServices, v => { C.lightServices = v; })),
       h("p", { class: "fineprint", style: "margin-top:10px" }, "Currency conversions use about $1.10 per euro and ₹88 per dollar."))));
 
-  root.append(head, how, tlSec, ladSec, dlSec, cardsSec, rest, nextLink("#/prospects", "work the list"), tip);
+  root.append(head, how, tlSec, ladSec, dlSec, cardsSec, rest, nextLink("#/prospects", "work the list", "One robot booth at BUILD27 takes " + Math.round(evCost(top).total / head0.committed * 100) + "% of the plan, because it is the one room built around the buyer. Everywhere else stays cheap."), tip);
   drawCards(); drawSpend();
   requestAnimationFrame(drawTimeline);
   const onR = () => drawTimeline();

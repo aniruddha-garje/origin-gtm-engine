@@ -5,10 +5,10 @@ import { refs, reasonChip, nextLink } from "../shared.js";
 
 const SIDE = ["paint", "nurture", "excl"];
 const TIERTXT = {
-  t1: ["Tier 1", "Northeast beachhead. Site walk."],
+  t1: ["Tier 1", "Near the NYC team. Invite to a site walk."],
   vet: ["Robot veterans", "Already ran a robot. Compare notes."],
-  t2: ["Tier 2", "High wage. ROI model."],
-  t3: ["Tier 3", "Sun Belt volume. Capacity."]
+  t2: ["Tier 2", "High wage. Send an ROI model."],
+  t3: ["Tier 3", "High volume. Pitch crew capacity."]
 };
 
 function ring(v) {
@@ -31,7 +31,7 @@ export default function prospects(root, params) {
   const head = band({
     no: "06", label: "Prospects", title: "Four tiers. Pick. Personalise. Send.",
     answer: h("span", null, "Every name carries the reason it is here. ", h("strong", null, "Select who to reach and the engine writes the first touch.")),
-    kpis: OUTBOUND_TIERS.map(t => ({ l: TIERTXT[t][0], v: String(all.filter(x => x.a.tier === t).length), s: (PLAY[TIER[t].play] || {}).n, hot: t === "t1" }))
+    kpis: OUTBOUND_TIERS.map(t => ({ l: TIERTXT[t][0], v: h("span", null, all.filter(x => x.a.tier === t).length, h("small", null, " contractors")), s: R.tierPlain[t].action, hot: t === "t1" }))
   });
 
   const tabsBox = h("div", { class: "ptabs", role: "tablist", "aria-label": "Prospect tiers" });
@@ -44,7 +44,10 @@ export default function prospects(root, params) {
   const note = h("p", { class: "fineprint", style: "margin-top:12px" }, "Built from public sources, so Origin's own pilot contractors are not identified here. Remove them before anything is sent.");
 
   const main = sec(null, null);
-  main.body.append(tabsBox, h("div", { class: "pbar" }, filters, h("div", { class: "toolbar" }, search, selAll)), listBox, sideBox, note);
+  const key = h("div", { class: "pkey" },
+    h("span", { class: "chip is-lead" }, "Main reason"), h("span", { class: "chip" }, "Other reasons"), h("span", { class: "chip is-live" }, "Found by the daily run"), h("span", { class: "chip is-soft" }, "About their market, not them"));
+  const listHead = h("div", { class: "plist-h" }, h("span"), h("span", null, "Score", h("small", null, "out of 100")), h("span", null, "Contractor"), h("span", null, "Why they are on the list"), h("span"));
+  main.body.append(tabsBox, h("div", { class: "pbar" }, filters, h("div", { class: "toolbar" }, search, selAll)), key, listHead, listBox, sideBox, note);
 
   /* action bar */
   const barText = h("span", null, "");
@@ -159,9 +162,9 @@ export default function prospects(root, params) {
       h("div", null,
         h("h4", null, "Score: " + sc.total + " of 100"),
         h("div", { class: "bd" }, bdRows.map(r => [
-          h("div", { class: "bd-r" + (r[0] === "Signals" ? " is-sig" : "") }, h("span", null, r[0]), h("span", { class: "bd-t" }, h("i", { style: "width:" + Math.max(0, r[1]) / r[2] * 100 + "%" })), h("span", { style: "text-align:right;font-variant-numeric:tabular-nums" }, r[1] + "/" + r[2])),
+          h("div", { class: "bd-r" + (r[0] === "Signals" ? " is-sig" : "") }, h("span", null, r[0]), h("span", { class: "bd-t" }, h("i", { style: "width:" + Math.max(0, r[1]) / r[2] * 100 + "%" })), h("span", { style: "text-align:right;font-variant-numeric:tabular-nums" }, r[1] + " of " + r[2])),
           h("div", { class: "bd-r" }, h("span"), h("span", { class: "bd-n" }, r[3]))])),
-        h("h4", null, "Signals. Tick what you verify."), checks));
+        h("h4", null, "Signals (tick what you have verified)"), checks));
   }
 
   function drawList() {
@@ -193,7 +196,7 @@ export default function prospects(root, params) {
   /* GC pull-through */
   root.append(head, main);
   if (dSec) root.append(dSec);
-  root.append(nextLink("#/next", "the same engine, any trade"), bar);
+  root.append(nextLink("#/next", "the same engine, any trade", all.filter(x => OUTBOUND_TIERS.includes(x.a.tier)).length + " contractors, each with a score, a reason and a first message ready to send."), bar);
   drawAll();
   return () => { closeComposer(); };
 }

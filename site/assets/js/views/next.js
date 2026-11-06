@@ -14,14 +14,14 @@ export default function next(root) {
     kpis: [
       { l: "Live today", v: "1", s: "Drywall finishing" },
       { l: "Trades Origin has named", v: "4", s: "Taping, installation, drilling, conduit" },
-      { l: "Inputs that change", v: "4 of 8", s: "Per new trade", hot: true },
+      { l: "Inputs that change", v: "4 of 8", s: "For each new trade", hot: true },
       { l: "Workers in these trades", v: (() => { const j = Object.values(T).reduce((t, x) => t + (x.jobs || 0), 0); return j ? (j / 1e6).toFixed(1) + "M" : "—"; })(), s: "BLS employment, US" }
     ]
   });
 
   const tabs = h("div", { class: "tradeg", role: "tablist", "aria-label": "Trades" });
   const detail = h("div", { class: "mapwrap rv", style: "margin-top:14px" });
-  const tSec = sec("Pick a trade", "The wage map for every trade already runs in the daily pull.", { cls: "is-dark" });
+  const tSec = sec("Pick a trade", "Each tile is a state and its median hourly wage for that trade. Orange is above the US median.", { cls: "is-dark" });
   tSec.body.append(tabs, detail);
 
   const classFor = st => {
@@ -51,10 +51,10 @@ export default function next(root) {
     const top = Object.entries(w.states || {}).sort((a, b) => b[1] - a[1]).slice(0, 3);
     put(side,
       h("p", { class: "card-t" }, d.occ + " · SOC " + d.soc),
-      h("div", { class: "big" }, w.national ? usd2(w.national) : "—"),
-      h("p", { class: "fineprint", style: "color:rgba(255,255,255,.6)" }, "US median" + (w.jobs ? ", " + num(w.jobs) + " workers" : "")),
+      h("div", { class: "big" }, w.national ? h("span", null, usd2(w.national), h("small", null, " an hour")) : "—"),
+      h("p", { class: "fineprint", style: "color:rgba(255,255,255,.6)" }, "US median wage" + (w.jobs ? ". " + num(w.jobs) + " workers nationwide." : "")),
       h("dl", { class: "kv" },
-        h("div", null, h("dt", null, "Top wages"), h("dd", null, top.map(x => x[0] + " " + usd2(x[1])).join(", "))),
+        h("div", null, h("dt", null, "Highest paying states"), h("dd", null, top.map(x => x[0] + " " + usd2(x[1])).join(", "))),
         h("div", null, h("dt", null, "Buyer"), h("dd", null, d.buyer)),
         h("div", null, h("dt", null, "Target list"), h("dd", null, d.list)),
         h("div", null, h("dt", null, "Robot trail"), h("dd", null, d.robots)),

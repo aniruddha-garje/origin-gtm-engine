@@ -7,12 +7,12 @@ export default function signals(root, params) {
   const L = S.live, C = (L && L.counts) || {};
   const head = band({
     no: "04", label: "Signals", title: "What tells us the moment is now?",
-    answer: h("span", null, "A daily scan of public records and news. ", h("strong", null, runStamp() + ".")),
+    answer: h("span", null, "Every morning we scan public records and news for a reason to call. ", h("strong", null, "Last run: " + runStamp() + ".")),
     kpis: [
       { l: "Interior work tracked", v: money(C.projectValue || 0), s: (C.projects || 0) + " jobs across 5 markets" },
-      { l: "Projects lagging", v: String(C.delays || 0), s: "Reported in US markets", hot: true },
+      { l: "Delayed projects", v: String(C.delays || 0), s: "Reported in US markets", hot: true },
       { l: "Data center fit-outs", v: String(C.dataCenters || 0), s: "In Texas filings" },
-      { l: "New names found", v: String(C.discovered || 0), s: "Not on our list yet" }
+      { l: "New contractors found", v: String(C.discovered || 0), s: "Not on our list yet" }
     ]
   });
 
@@ -21,7 +21,7 @@ export default function signals(root, params) {
   let kind = params.kind && kinds.some(k => k[0] === params.kind) ? params.kind : "all";
   const tabs = h("div", { class: "seg", role: "group", "aria-label": "Filter signals" });
   const box = h("div");
-  const feedSec = sec("The feed", "Why each item matters is the label on the left.");
+  const feedSec = sec("What the scan found", "The label on the left says why each item matters. An orange dot means new since the last run.");
   feedSec.body.append(tabs, h("div", { style: "height:14px" }), box);
 
   const stIn = st => G.accounts.filter(a => a.st === st && OUTBOUND_TIERS.includes(a.tier)).map(a => ({ a, s: score(a).total })).sort((x, y) => y.s - x.s).slice(0, 3).map(x => x.a);
@@ -67,23 +67,23 @@ export default function signals(root, params) {
   }
 
   /* the library of signals */
-  const lib = sec("What each signal is worth", "Points add to the score, capped at 50.", { cls: "is-white" });
+  const lib = sec("What each signal is worth", "Each signal adds points to a contractor's score, up to 50 in total.", { cls: "is-white" });
   const fired = k => G.accounts.filter(a => a.tier !== "excl" && activeSig(a).has(k)).length;
   const maxW = 25;
-  lib.body.append(h("div", { class: "sigw rv" }, G.signals.map(x => h("div", { class: "sigw-r" },
+  lib.body.append(h("div", { class: "sigw rv" }, h("div", { class: "sigw-r is-head" }, h("span", null, "Signal"), h("span", { class: "hide-s" }, "Effect on score"), h("span", { style: "text-align:right" }, "Points"), h("span", { class: "hide-s", style: "text-align:right" }, "Contractors"), h("span", { class: "hide-s" }, "We check")), G.signals.map(x => h("div", { class: "sigw-r" },
     h("div", null, x.n, h("small", null, x.why, " ", refs(x.src))),
     h("div", { class: "sigbar", "aria-hidden": "true" }, h("i", { class: x.w < 0 ? "is-neg" : "", style: "width:" + Math.abs(x.w) / maxW * (x.w < 0 ? 40 : 60) + "%" })),
     h("strong", { style: "font-weight:600;text-align:right" }, (x.w > 0 ? "+" : "−") + Math.abs(x.w)),
-    h("span", { class: "hide-s fineprint", style: "text-align:right", title: "Accounts where this signal fires" }, fired(x.k) + " on"),
+    h("span", { class: "hide-s fineprint", style: "text-align:right", title: "Accounts where this signal fires" }, String(fired(x.k))),
     h("span", { class: "hide-s" }, h("span", { class: "tag" }, x.freq))))));
 
   /* sources */
-  const srcSec = sec("Source health", "Every collector reports honestly. A failed source keeps its last good data.", { cls: "is-dark" });
+  const srcSec = sec("Where the data comes from", "Green means the source updated on the last run. A source that fails keeps its last good data.", { cls: "is-dark" });
   srcSec.body.append(h("div", { class: "srcs rv" }, (L ? L.sources : []).map(x => h(x.url ? "a" : "div", { class: "src", href: x.url || null, target: x.url ? "_blank" : null, rel: x.url ? "noopener noreferrer" : null },
     h("h4", null, h("i", { class: "dot is-" + x.status, title: x.status }), x.name), h("p", null, x.note)))));
 
   /* sweeps */
-  const sw = sec("Automated versus manual", "What the run does itself, and what still needs a person.");
+  const sw = sec("What runs itself, and what needs a person", "Orange tags run automatically. The rest are recipes for the team.");
   sw.body.append(h("div", { class: "sweeps rv" }, G.sweeps.map(x => {
     const auto = R.sweepStatus[x.n] === "auto";
     return h("div", { class: "card sweep" },
@@ -94,6 +94,6 @@ export default function signals(root, params) {
       x.recipe ? h("div", null, h("pre", null, x.recipe), copyBtn(x.recipe, "Copy recipe")) : null);
   })), h("p", { class: "fineprint", style: "margin-top:12px" }, G.sweepNote));
 
-  root.append(head, feedSec, lib, srcSec, sw, nextLink("#/events", "where to show up"));
+  root.append(head, feedSec, lib, srcSec, sw, nextLink("#/events", "where to show up", "Every call can open with something that happened this month, not a cold pitch."));
   draw();
 }

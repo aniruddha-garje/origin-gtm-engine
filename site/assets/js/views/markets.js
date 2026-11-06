@@ -1,7 +1,7 @@
 /* Markets: where the robot pays for itself. One page for wages. */
 import { h, put, band, sec, steps, collapse, field, table, copyBtn, store, usd, usd2, num, money } from "../ui.js";
 import { G, S, STATES, WAGE, roiCalc, roiNow, applyPreset, marketJobs } from "../core.js";
-import { refs, nextLink } from "../shared.js";
+import { refs, nextLink, howto } from "../shared.js";
 
 const TILES = [
   ["AK", 0, 0], ["ME", 0, 10],
@@ -32,6 +32,8 @@ export function tileGrid(onPick, classFor, labelFor) {
   return grid;
 }
 
+const hr = v => h("span", null, v, h("small", null, " an hour"));
+
 export default function markets(root) {
   const L = S.live;
   let sel = "IL";
@@ -45,10 +47,10 @@ export default function markets(root) {
     h("p", { class: "eyebrow" }, h("span", { class: "eyebrow-n" }, "01"), "Markets"),
     h("h1", { tabindex: "-1" }, "Where does the robot pay for itself?"), answer,
     h("dl", { class: "kpis" },
-      h("div", { class: "kpi" }, h("dt", null, "US median taper"), h("dd", null, usd2(G.wageNational)), h("span", { class: "kpi-s" }, "BLS, May " + ((L && L.wages && L.wages.year) || 2025))),
-      h("div", { class: "kpi" }, h("dt", null, "Highest state"), h("dd", null, usd2(top[2])), h("span", { class: "kpi-s" }, top[1])),
-      h("div", { class: "kpi" }, h("dt", null, "NYC federal rate"), h("dd", null, "$84.38"), h("span", { class: "kpi-s" }, "$48.47 base plus $35.91 fringe")),
-      h("div", { class: "kpi is-hot" }, h("dt", null, "Break-even wage"), kBE, h("span", { class: "kpi-s" }, "Median wage at 35% burden")))));
+      h("div", { class: "kpi" }, h("dt", null, "Drywall finisher, US median"), h("dd", null, hr(usd2(G.wageNational))), h("span", { class: "kpi-s" }, "Government wage survey, May " + ((L && L.wages && L.wages.year) || 2025))),
+      h("div", { class: "kpi" }, h("dt", null, "Highest state"), h("dd", null, hr(usd2(top[2]))), h("span", { class: "kpi-s" }, top[1])),
+      h("div", { class: "kpi" }, h("dt", null, "NYC federal job"), h("dd", null, hr("$84.38")), h("span", { class: "kpi-s" }, "$48.47 wage plus $35.91 benefits")),
+      h("div", { class: "kpi is-hot" }, h("dt", null, "Robot break-even"), kBE, h("span", { class: "kpi-s" }, "Above this wage, the robot is cheaper")))));
 
   /* map */
   const side = h("div", { class: "card is-dark" });
@@ -61,7 +63,7 @@ export default function markets(root) {
   const grid = tileGrid(st => { sel = st; draw(); }, classFor, st => (WAGE[st] === undefined ? "" : "$" + Math.round(WAGE[st])));
 
   const sliders = h("div", { class: "sliders" });
-  const SL = [["price", "Robot, $ a month", 4000, 24000, 500, v => "$" + num(v)], ["speed", "Speed vs a finisher", 1, 6, 0.5, v => v + "x"], ["ratio", "Robots per operator", 1, 5, 1, v => v + ":1"], ["share", "Share robot takes", 30, 100, 5, v => v + "%"]];
+  const SL = [["price", "Robot rental, a month", 4000, 24000, 500, v => "$" + num(v)], ["speed", "Robot speed vs one finisher", 1, 6, 0.5, v => v + " times"], ["ratio", "Robots per operator", 1, 5, 1, v => v + (v === 1 ? " robot" : " robots")], ["share", "Walls the robot finishes", 30, 100, 5, v => v + "%"]];
   SL.forEach(d => {
     const out = h("output", null, d[5](S.roi[d[0]]));
     const i = h("input", { type: "range", min: d[2], max: d[3], step: d[4], value: S.roi[d[0]], "aria-label": d[1] });
@@ -69,14 +71,14 @@ export default function markets(root) {
     sliders.append(h("div", { class: "slider" }, h("label", null, d[1], out), i));
   });
   const legend = h("div", { class: "legend" },
-    h("span", null, h("i", { style: "background:#fd583a" }), "50%+ over break-even"),
-    h("span", null, h("i", { style: "background:#c44a31" }), "20 to 50% over"),
-    h("span", null, h("i", { style: "background:#8e3a29" }), "Just over"),
-    h("span", null, h("i", { style: "background:#3a3a36" }), "Below: sell capacity"),
-    h("span", null, h("i", { style: "background:repeating-linear-gradient(135deg,#1a1a18 0 3px,#333 3px 6px)" }), "No BLS estimate"));
+    h("span", null, h("i", { style: "background:#fd583a" }), "Wage 50%+ above break-even"),
+    h("span", null, h("i", { style: "background:#c44a31" }), "20 to 50% above"),
+    h("span", null, h("i", { style: "background:#8e3a29" }), "Up to 20% above"),
+    h("span", null, h("i", { style: "background:#3a3a36" }), "Below: sell speed, not cost"),
+    h("span", null, h("i", { style: "background:repeating-linear-gradient(135deg,#1a1a18 0 3px,#333 3px 6px)" }), "No government wage data"));
 
-  const mapSec = sec("Move the price. Watch the map.", "Robot pricing is a placeholder. Origin has not published one.", { cls: "is-dark" });
-  mapSec.body.append(h("div", { class: "mapwrap rv" }, h("div", { class: "card is-dark" }, grid, legend, sliders), side));
+  const mapSec = sec("Move the price. Watch the map.", "Orange states: the robot is cheaper than a finisher. Grey states: sell speed instead.", { cls: "is-dark" });
+  mapSec.body.append(h("div", { class: "mapwrap rv" }, h("div", { class: "card is-dark" }, howto("Each tile is a state and its median hourly wage. Click one. Drag a slider to see states flip."), grid, legend, sliders, h("p", { class: "fineprint", style: "margin-top:12px;color:rgba(255,255,255,.55)" }, "Robot price is our placeholder. Origin has not published one.")), side));
 
   /* ranked */
   const barsBox = h("div", { class: "bars bars-pad" });
@@ -86,29 +88,29 @@ export default function markets(root) {
     const t = tblBox.hidden; tblBox.hidden = !t; barsBox.hidden = t;
     toggle.textContent = t ? "Show chart" : "Show table"; toggle.setAttribute("aria-pressed", String(t));
   });
-  const rankSec = sec("Every state, one benchmark", "Median hourly wage for drywall tapers. Orange clears break-even at a 35% burden.", { cls: "is-white" });
-  rankSec.body.append(h("div", { class: "toolbar spread", style: "margin-bottom:8px" }, h("span", { class: "fineprint" }, "* Small BLS sample"), toggle), barsBox, tblBox);
+  const rankSec = sec("Wages, state by state", "What a drywall finisher earns, from the US government wage survey.", { cls: "is-white" });
+  rankSec.body.append(h("div", { class: "toolbar spread", style: "margin-bottom:8px" }, howto("Dollars per hour. Solid line: robot break-even. Dashed line: US median. * Small sample."), toggle), barsBox, tblBox);
 
   /* metros */
   const metros = L && L.wages && L.wages.metros ? Object.entries(L.wages.metros).sort((a, b) => b[1] - a[1]) : [];
   const mMax = 90;
-  const metroSec = sec("State averages hide the metro", "BLS medians understate union markets. Federal prevailing rates show the real ceiling.");
+  const metroSec = sec("State averages hide the city", "The same work costs far more in some cities, and most of all on federal jobs.");
   metroSec.body.append(h("div", { class: "card rv" }, h("div", { class: "bars" },
     h("div", { class: "bar-r" }, h("span", { class: "bl" }, "NYC federal job"), h("span", { class: "bar-t" }, h("span", { class: "bar-f is-above", style: "width:" + (84.38 / mMax * 100) + "%" })), h("span", { class: "bar-v" }, "$84.38")),
     metros.map(m => h("div", { class: "bar-r" }, h("span", { class: "bl" }, m[0]), h("span", { class: "bar-t" }, h("span", { class: "bar-f", style: "width:" + (m[1] / mMax * 100) + "%" })), h("span", { class: "bar-v" }, usd2(m[1]))))),
-    h("p", { class: "fineprint", style: "margin-top:12px" }, "Metro medians from BLS. The NYC figure is the Davis-Bacon rate including fringe. ", refs(["s24"]))));
+    h("p", { class: "fineprint", style: "margin-top:12px" }, "Dollars per hour. City medians from BLS. The top bar is the federal rate with benefits. ", refs(["s24"]))));
 
   /* method */
   const methodSec = sec("How we benchmarked", null, { cls: "is-white" });
   methodSec.body.append(steps([
-    ["Go to the primary source", "BLS OEWS, drywall tapers, occupation 47-2082, every state."],
-    ["Load the hour", "Add a 35% burden. Use prevailing rates on federal work."],
-    ["Find break-even", "Robot and operator cost equal the finisher hours they replace."],
-    ["Pick the pitch", "Above the line, sell cost. Below it, sell schedule and capacity."]
+    ["Go to the source", "The US government wage survey (BLS) for drywall finishers, in every state."],
+    ["Add the real cost", "Add 35% for taxes, insurance and benefits. Use federal rates on federal work."],
+    ["Find break-even", "The wage where robot plus operator costs the same as the finishers replaced."],
+    ["Pick the pitch", "Above that wage, sell cost. Below it, sell schedule and crew capacity."]
   ]),
   h("div", { style: "margin-top:34px" },
-    h("p", { class: "card-t" }, "Wage becomes score: labor cost points, out of 15"),
-    h("div", { class: "stepband" }, [["4", "Under $24"], ["6", "$24+"], ["8", "$28+"], ["10", "$33+"], ["12", "$37+"], ["14", "$45+"], ["15", "NYC metro"]].map(b => h("div", null, h("b", null, b[0]), b[1])))));
+    h("p", { class: "card-t" }, "How wage feeds the score: labor cost points, out of 15"),
+    h("div", { class: "stepband" }, [["4", "Under $24 an hour"], ["6", "$24+ an hour"], ["8", "$28+ an hour"], ["10", "$33+ an hour"], ["12", "$37+ an hour"], ["14", "$45+ an hour"], ["15", "NYC metro"]].map(b => h("div", null, h("b", null, b[0] + " pts"), b[1])))));
 
   if (L && L.wages && L.wages.changed && L.wages.changed.length) {
     methodSec.body.append(h("p", { class: "fineprint", style: "margin-top:16px" }, h("span", { class: "tag is-orange" }, "Live check"), " The daily run re-read BLS and corrected: ",
@@ -128,30 +130,30 @@ export default function markets(root) {
     const r = roiNow();
     const be = isFinite(r.beWage);
     const n = above();
-    put(answer, h("strong", null, n + " of " + G.wages.length + " states"), " clear break-even at today's inputs. ", top[1] + " leads at " + usd2(top[2]) + ".");
-    kBE.textContent = be ? usd2(r.beWage) : "None";
+    put(answer, h("strong", null, "In " + n + " of " + G.wages.length + " states"), " a finisher costs more than the robot, at our placeholder price. ", top[1] + " is highest at " + usd2(top[2]) + " an hour.");
+    put(kBE, be ? hr(usd2(r.beWage)) : "None");
     grid.update(sel);
 
     /* side panel */
     const w = WAGE[sel], name = STATES[sel];
     const inState = G.accounts.filter(a => a.st === sel && a.tier !== "excl");
     const jobs = marketJobs(sel);
-    const body = [h("p", { class: "card-t" }, "Selected market"), h("h3", { class: "side-h" }, name)];
+    const body = [h("p", { class: "card-t" }, "Selected state"), h("h3", { class: "side-h" }, name)];
     if (w === undefined) {
       body.push(h("p", { class: "fineprint", style: "color:rgba(255,255,255,.6);margin-top:10px" }, "BLS publishes no taper estimate here. Accounts in this state score the average 6 labor points."));
     } else {
       const sr = roiCalc(Object.assign({}, S.roi, { wage: w, burden: 35 }));
       const cost = be && w >= r.beWage;
-      body.push(h("div", { class: "big", style: "margin-top:10px" }, usd2(w)),
+      body.push(h("div", { class: "big", style: "margin-top:10px" }, hr(usd2(w))),
         h("div", { class: "verdict" + (cost ? " is-cost" : "") }, h("span", null, h("strong", null, cost ? "Lead with cost. " : "Lead with capacity. "), cost ? "The robot beats the finisher hours it covers." : "The case is schedule and crew, not price.")),
         h("dl", { class: "kv" },
-          h("div", null, h("dt", null, "Loaded at 35%"), h("dd", null, usd2(w * 1.35))),
-          h("div", null, h("dt", null, "Net per month, 60k sq ft"), h("dd", null, (sr.net >= 0 ? "Saves " : "Costs ") + usd(Math.abs(sr.net)))),
-          h("div", null, h("dt", null, "Finisher days freed"), h("dd", null, num(sr.freed))),
-          (L && L.wages && L.wages.states[sel] && L.wages.states[sel].jobs) ? h("div", null, h("dt", null, "Tapers employed"), h("dd", null, num(L.wages.states[sel].jobs))) : null));
+          h("div", null, h("dt", null, "With taxes and benefits (35%)"), h("dd", null, usd2(w * 1.35) + " an hour")),
+          h("div", null, h("dt", null, "Robot vs crew, per month"), h("dd", null, (sr.net >= 0 ? "Saves " : "Costs ") + usd(Math.abs(sr.net)))),
+          h("div", null, h("dt", null, "Finisher days freed, per month"), h("dd", null, num(sr.freed))),
+          (L && L.wages && L.wages.states[sel] && L.wages.states[sel].jobs) ? h("div", null, h("dt", null, "Finishers employed here"), h("dd", null, num(L.wages.states[sel].jobs))) : null));
     }
-    if (jobs) body.push(h("p", { class: "fineprint", style: "color:rgba(255,255,255,.75);margin-top:12px" }, h("span", { class: "live-dot", style: "margin-right:7px" }), jobs.n + " large interior jobs live, " + money(jobs.value)));
-    if (inState.length) body.push(h("p", { class: "card-t", style: "margin:16px 0 8px" }, inState.length + (inState.length === 1 ? " prospect" : " prospects")),
+    if (jobs) body.push(h("p", { class: "fineprint", style: "color:rgba(255,255,255,.75);margin-top:12px" }, h("span", { class: "live-dot", style: "margin-right:7px" }), jobs.n + " large interior jobs permitted, worth " + money(jobs.value)));
+    if (inState.length) body.push(h("p", { class: "card-t", style: "margin:16px 0 8px" }, inState.length + (inState.length === 1 ? " contractor" : " contractors") + " on our list"),
       h("div", { class: "chips" }, inState.slice(0, 7).map(a => h("a", { class: "chip", style: "background:#1d1d1b;border-color:#2c2c29;color:#fff;text-decoration:none", href: "#/prospects?tier=" + (["t1", "vet", "t2", "t3"].includes(a.tier) ? a.tier : "t1") }, a.n))));
     put(side, body);
 
@@ -168,7 +170,7 @@ export default function markets(root) {
     put(tblBox, table([{ t: "State" }, { t: "Median hourly wage", cls: "num" }, { t: "Loaded at 35%", cls: "num" }, { t: "BLS sample" }], data.map(w2 => [w2[1], usd2(w2[2]), usd2(w2[2] * 1.35), w2[3] ? "Small" : "Standard"]), { caption: "Taper wages by state" }));
   }
 
-  root.append(head, mapSec, rankSec, metroSec, methodSec, facts, roiSec, nextLink("#/segments", "who buys"));
+  root.append(head, mapSec, rankSec, metroSec, methodSec, facts, roiSec, nextLink("#/segments", "who buys", "Lead with cost in " + above() + " states. Lead with speed and crew capacity in the other " + (G.wages.length - above()) + "."));
   draw();
 }
 
