@@ -1,0 +1,10 @@
+# The original artifact stays on this machine. site/data/research.js is its data, byte for byte.
+/app.js
+/data.js
+/index.html
+/styles.css
+
+node_modules/
+.netlify/
+.env
+*.log
