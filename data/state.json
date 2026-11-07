@@ -231,28 +231,44 @@
   "d:Tri-State General, INC": "2026-11-06",
   "d:Crest Contracting & Management LLC": "2026-11-06",
   "f:precision2024-12-10208162": "2026-11-06",
-  "f:pillar2024-11-1124650000": "2026-11-06"
+  "f:pillar2024-11-1124650000": "2026-11-06",
+  "n:6bf6e7a6e3ea": "2026-11-07",
+  "n:665c8f320141": "2026-11-07",
+  "n:5dac84ca9a63": "2026-11-07",
+  "n:b2c9b18615eb": "2026-11-07",
+  "p:nyc-X00956605": "2026-11-07",
+  "p:nyc-Q00951778": "2026-11-07",
+  "p:chi-101086613": "2026-11-07",
+  "p:nyc-M01432231": "2026-11-07",
+  "p:nyc-X00781015": "2026-11-07",
+  "p:nyc-B01476317": "2026-11-07",
+  "p:nyc-M01440104": "2026-11-07",
+  "p:nyc-B00830321": "2026-11-07",
+  "p:chi-101085604": "2026-11-07",
+  "p:nyc-M00823789": "2026-11-07",
+  "p:nyc-M01286391": "2026-11-07",
+  "p:nyc-M01427341": "2026-11-07"
  },
  "pages": {
   "e33": {
-   "hash": "b45d2652ccb6",
-   "changedAt": null
+   "hash": "7a04c1c910e5",
+   "changedAt": "2026-11-07"
   },
   "e14": {
    "hash": "d82a9ac2c83c",
    "changedAt": null
   },
   "e10": {
-   "hash": "12101b106f21",
-   "changedAt": "2026-11-06"
+   "hash": "02d180ed724a",
+   "changedAt": "2026-11-07"
   },
   "e11": {
    "hash": "75544d12a5ff",
    "changedAt": null
   },
   "e32": {
-   "hash": "e293ae3632f7",
-   "changedAt": null
+   "hash": "3e428466d16e",
+   "changedAt": "2026-11-07"
   },
   "e6": {
    "hash": "3306512dd0ca",
@@ -283,8 +299,8 @@
    "changedAt": null
   },
   "e34": {
-   "hash": "93c23d41caed",
-   "changedAt": null
+   "hash": "cccf04c32297",
+   "changedAt": "2026-11-07"
   },
   "e8": {
    "hash": "3892e4df5a41",
@@ -295,8 +311,8 @@
    "changedAt": null
   },
   "e26": {
-   "hash": "8ae46fd2127c",
-   "changedAt": null
+   "hash": "a1664818975b",
+   "changedAt": "2026-11-07"
   },
   "e1": {
    "hash": null,
@@ -375,16 +391,16 @@
    "changedAt": null
   },
   "e23": {
-   "hash": "b5d2875a44b5",
-   "changedAt": "2026-11-06"
+   "hash": "0662b7f6c110",
+   "changedAt": "2026-11-07"
   },
   "e42": {
    "hash": "45bac9a9ba05",
    "changedAt": null
   },
   "e35": {
-   "hash": "67b7fe8ce8b1",
-   "changedAt": null
+   "hash": "fe7dfba8a1a6",
+   "changedAt": "2026-11-07"
   },
   "e30": {
    "hash": "0994a425d394",
@@ -406,6 +422,21 @@
    "accountsWithLive": 2,
    "discovered": 19,
    "newDiscovered": 19
+  },
+  {
+   "date": "2026-11-07",
+   "sources": 10,
+   "sourcesOk": 10,
+   "signals": 40,
+   "newSignals": 4,
+   "projects": 184,
+   "newProjects": 12,
+   "projectValue": 3485939341.400001,
+   "delays": 15,
+   "dataCenters": 6,
+   "accountsWithLive": 2,
+   "discovered": 19,
+   "newDiscovered": 0
   }
  ],
  "originClaims": {
