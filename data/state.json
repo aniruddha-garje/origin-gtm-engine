@@ -286,28 +286,55 @@
   "p:nyc-B01373510": "2026-11-12",
   "p:chi-101090445": "2026-11-12",
   "p:chi-101087904": "2026-11-12",
-  "p:nyc-M01349240": "2026-11-12"
+  "p:nyc-M01349240": "2026-11-12",
+  "n:1b659807e682": "2026-11-14",
+  "n:d430ab52eaaf": "2026-11-14",
+  "n:3838047500e3": "2026-11-14",
+  "p:nyc-M00665110": "2026-11-14",
+  "p:chi-101088435": "2026-11-14",
+  "p:nyc-B01054736": "2026-11-14",
+  "p:nyc-M00940950": "2026-11-14",
+  "p:chi-101089434": "2026-11-14",
+  "p:chi-101087843": "2026-11-14",
+  "p:nyc-M01270287": "2026-11-14",
+  "p:nyc-X01340483": "2026-11-14",
+  "p:chi-B200516230": "2026-11-14",
+  "p:aus-2020-079588 BP": "2026-11-14",
+  "p:nyc-X08053901": "2026-11-14",
+  "p:nyc-M01255580": "2026-11-14",
+  "p:chi-101087314": "2026-11-14",
+  "d:Durwood Construction LLC": "2026-11-14",
+  "d:Raymond-San Diego, INC": "2026-11-14",
+  "d:Valley Interior Systems, INC.": "2026-11-14",
+  "d:Performance Building Solutions": "2026-11-14",
+  "d:Bek Of Alaska, INC.": "2026-11-14",
+  "d:Cunningham Acoustical & Resilient": "2026-11-14",
+  "d:Ironwood Commercial Builders INC": "2026-11-14",
+  "d:Adams, INC": "2026-11-14",
+  "d:Foster & Company, LLC": "2026-11-14",
+  "f:midwestdw2024-12-022600000": "2026-11-14",
+  "f:alliance2025-10-28384728": "2026-11-14"
  },
  "pages": {
   "e33": {
-   "hash": "846724cf86ed",
-   "changedAt": "2026-11-13"
+   "hash": "110acabe70e3",
+   "changedAt": "2026-11-14"
   },
   "e14": {
    "hash": "d82a9ac2c83c",
    "changedAt": null
   },
   "e10": {
-   "hash": "12101b106f21",
-   "changedAt": "2026-11-09"
+   "hash": "02d180ed724a",
+   "changedAt": "2026-11-14"
   },
   "e11": {
    "hash": "75544d12a5ff",
    "changedAt": null
   },
   "e32": {
-   "hash": "a05310679f2b",
-   "changedAt": "2026-11-13"
+   "hash": "8e1da5d81d5c",
+   "changedAt": "2026-11-14"
   },
   "e6": {
    "hash": "3306512dd0ca",
@@ -350,8 +377,8 @@
    "changedAt": "2026-11-13"
   },
   "e26": {
-   "hash": "5eea101b738c",
-   "changedAt": "2026-11-13"
+   "hash": "1da6b9d170d2",
+   "changedAt": "2026-11-14"
   },
   "e1": {
    "hash": null,
@@ -406,8 +433,8 @@
    "changedAt": "2026-11-12"
   },
   "e2": {
-   "hash": "8aacfe545b2b",
-   "changedAt": "2026-11-11"
+   "hash": "75a996c76b09",
+   "changedAt": "2026-11-14"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -422,16 +449,16 @@
    "changedAt": null
   },
   "e22": {
-   "hash": "977e203414f3",
-   "changedAt": "2026-11-11"
+   "hash": "6c806e3bc7ff",
+   "changedAt": "2026-11-14"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "2fef21bd4515",
-   "changedAt": "2026-11-13"
+   "hash": "dc4c272fb01e",
+   "changedAt": "2026-11-14"
   },
   "e42": {
    "hash": "45bac9a9ba05",
@@ -566,6 +593,21 @@
    "accountsWithLive": 2,
    "discovered": 19,
    "newDiscovered": 0
+  },
+  {
+   "date": "2026-11-14",
+   "sources": 10,
+   "sourcesOk": 9,
+   "signals": 35,
+   "newSignals": 3,
+   "projects": 170,
+   "newProjects": 13,
+   "projectValue": 1874446497.3000004,
+   "delays": 12,
+   "dataCenters": 0,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 9
   }
  ],
  "originClaims": {
