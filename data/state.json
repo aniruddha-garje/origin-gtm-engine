@@ -313,28 +313,32 @@
   "d:Adams, INC": "2026-11-14",
   "d:Foster & Company, LLC": "2026-11-14",
   "f:midwestdw2024-12-022600000": "2026-11-14",
-  "f:alliance2025-10-28384728": "2026-11-14"
+  "f:alliance2025-10-28384728": "2026-11-14",
+  "n:5a4fab45975b": "2026-11-15",
+  "n:d8fc8e41666f": "2026-11-15",
+  "p:tx-TABS2027005796": "2026-11-15",
+  "p:nyc-M01323913": "2026-11-15"
  },
  "pages": {
   "e33": {
-   "hash": "110acabe70e3",
-   "changedAt": "2026-11-14"
+   "hash": "0b8f97a92495",
+   "changedAt": "2026-11-15"
   },
   "e14": {
    "hash": "d82a9ac2c83c",
    "changedAt": null
   },
   "e10": {
-   "hash": "02d180ed724a",
-   "changedAt": "2026-11-14"
+   "hash": "12101b106f21",
+   "changedAt": "2026-11-15"
   },
   "e11": {
    "hash": "75544d12a5ff",
    "changedAt": null
   },
   "e32": {
-   "hash": "8e1da5d81d5c",
-   "changedAt": "2026-11-14"
+   "hash": "1c86d944d2af",
+   "changedAt": "2026-11-15"
   },
   "e6": {
    "hash": "3306512dd0ca",
@@ -373,12 +377,12 @@
    "changedAt": "2026-11-10"
   },
   "e19": {
-   "hash": "c81e5aea5b4b",
-   "changedAt": "2026-11-13"
+   "hash": "326a74a1a4d5",
+   "changedAt": "2026-11-15"
   },
   "e26": {
-   "hash": "1da6b9d170d2",
-   "changedAt": "2026-11-14"
+   "hash": "d53f1ae3eff0",
+   "changedAt": "2026-11-15"
   },
   "e1": {
    "hash": null,
@@ -433,8 +437,8 @@
    "changedAt": "2026-11-12"
   },
   "e2": {
-   "hash": "75a996c76b09",
-   "changedAt": "2026-11-14"
+   "hash": "d1aacfdfaa36",
+   "changedAt": "2026-11-15"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -449,16 +453,16 @@
    "changedAt": null
   },
   "e22": {
-   "hash": "6c806e3bc7ff",
-   "changedAt": "2026-11-14"
+   "hash": "30335f5c825c",
+   "changedAt": "2026-11-15"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "dc4c272fb01e",
-   "changedAt": "2026-11-14"
+   "hash": "48063272a713",
+   "changedAt": "2026-11-15"
   },
   "e42": {
    "hash": "45bac9a9ba05",
@@ -608,6 +612,21 @@
    "accountsWithLive": 4,
    "discovered": 24,
    "newDiscovered": 9
+  },
+  {
+   "date": "2026-11-15",
+   "sources": 10,
+   "sourcesOk": 10,
+   "signals": 34,
+   "newSignals": 2,
+   "projects": 186,
+   "newProjects": 2,
+   "projectValue": 2916626523.3000007,
+   "delays": 13,
+   "dataCenters": 9,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 0
   }
  ],
  "originClaims": {
