@@ -332,12 +332,20 @@
   "p:nyc-M01460629": "2026-11-18",
   "p:chi-101073058": "2026-11-18",
   "p:nyc-B01323940": "2026-11-18",
-  "p:nyc-M01459267": "2026-11-18"
+  "p:nyc-M01459267": "2026-11-18",
+  "n:da29ba7aef7a": "2026-11-19",
+  "p:nyc-M01364183": "2026-11-19",
+  "p:nyc-M01283368": "2026-11-19",
+  "p:nyc-B01224942": "2026-11-19",
+  "p:nyc-M01309850": "2026-11-19",
+  "p:nyc-M01442673": "2026-11-19",
+  "p:nyc-Q08033970": "2026-11-19",
+  "p:nyc-B00931256": "2026-11-19"
  },
  "pages": {
   "e33": {
-   "hash": "29b7a1a24648",
-   "changedAt": "2026-11-18"
+   "hash": "49dae2219547",
+   "changedAt": "2026-11-19"
   },
   "e14": {
    "hash": "d82a9ac2c83c",
@@ -352,12 +360,12 @@
    "changedAt": null
   },
   "e32": {
-   "hash": "0a762356e875",
-   "changedAt": "2026-11-18"
+   "hash": "f622c9f8f71f",
+   "changedAt": "2026-11-19"
   },
   "e6": {
-   "hash": "fc9573c002e9",
-   "changedAt": "2026-11-18"
+   "hash": "8d4fcee42138",
+   "changedAt": "2026-11-19"
   },
   "e13": {
    "hash": "0f5c2fe7a9d5",
@@ -388,16 +396,16 @@
    "changedAt": "2026-11-07"
   },
   "e8": {
-   "hash": "563ed4c363d4",
-   "changedAt": "2026-11-18"
+   "hash": "ea1f55179aca",
+   "changedAt": "2026-11-19"
   },
   "e19": {
-   "hash": "326a74a1a4d5",
-   "changedAt": "2026-11-18"
+   "hash": "c81e5aea5b4b",
+   "changedAt": "2026-11-19"
   },
   "e26": {
-   "hash": "f612e10ba6a6",
-   "changedAt": "2026-11-18"
+   "hash": "808e1e10569a",
+   "changedAt": "2026-11-19"
   },
   "e1": {
    "hash": null,
@@ -428,8 +436,8 @@
    "changedAt": "2026-11-10"
   },
   "e21": {
-   "hash": "a588b4f1b895",
-   "changedAt": "2026-11-18"
+   "hash": "305dcda86d64",
+   "changedAt": "2026-11-19"
   },
   "e27": {
    "hash": null,
@@ -448,12 +456,12 @@
    "changedAt": null
   },
   "e29": {
-   "hash": "c7bac28fd4bc",
-   "changedAt": "2026-11-12"
+   "hash": "3db853f9f852",
+   "changedAt": "2026-11-19"
   },
   "e2": {
-   "hash": "05ebafc0957e",
-   "changedAt": "2026-11-17"
+   "hash": "208268bbe3b0",
+   "changedAt": "2026-11-19"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -468,16 +476,16 @@
    "changedAt": "2026-11-16"
   },
   "e22": {
-   "hash": "af62e638ba14",
-   "changedAt": "2026-11-17"
+   "hash": "8bdf81f27cdc",
+   "changedAt": "2026-11-19"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "2a5dc1cec72b",
-   "changedAt": "2026-11-18"
+   "hash": "78029adbfb1e",
+   "changedAt": "2026-11-19"
   },
   "e42": {
    "hash": "45bac9a9ba05",
@@ -683,6 +691,21 @@
    "newProjects": 8,
    "projectValue": 2721719951.5000005,
    "delays": 13,
+   "dataCenters": 6,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 0
+  },
+  {
+   "date": "2026-11-19",
+   "sources": 10,
+   "sourcesOk": 10,
+   "signals": 39,
+   "newSignals": 1,
+   "projects": 186,
+   "newProjects": 7,
+   "projectValue": 2643656179.5000005,
+   "delays": 16,
    "dataCenters": 6,
    "accountsWithLive": 4,
    "discovered": 24,
