@@ -347,7 +347,16 @@
   "p:chi-101089946": "2026-11-20",
   "p:nyc-B01017846": "2026-11-20",
   "p:chi-101081657": "2026-11-20",
-  "p:nyc-B00909766": "2026-11-20"
+  "p:nyc-B00909766": "2026-11-20",
+  "n:f3012fd6fd31": "2026-11-21",
+  "p:tx-TABS2027006474": "2026-11-21",
+  "p:chi-101088941": "2026-11-21",
+  "p:nyc-M01343372": "2026-11-21",
+  "p:nyc-M01370797": "2026-11-21",
+  "p:nyc-X01434996": "2026-11-21",
+  "p:nyc-Q00934566": "2026-11-21",
+  "p:sea-7136526-CN": "2026-11-21",
+  "p:nyc-M01475109": "2026-11-21"
  },
  "pages": {
   "e33": {
@@ -359,20 +368,20 @@
    "changedAt": null
   },
   "e10": {
-   "hash": "12101b106f21",
-   "changedAt": "2026-11-17"
+   "hash": "02d180ed724a",
+   "changedAt": "2026-11-21"
   },
   "e11": {
    "hash": "75544d12a5ff",
    "changedAt": null
   },
   "e32": {
-   "hash": "4a4d62cfb897",
-   "changedAt": "2026-11-20"
+   "hash": "8956f1707e3e",
+   "changedAt": "2026-11-21"
   },
   "e6": {
-   "hash": "8d4fcee42138",
-   "changedAt": "2026-11-19"
+   "hash": "a08299a81ebd",
+   "changedAt": "2026-11-21"
   },
   "e13": {
    "hash": "0f5c2fe7a9d5",
@@ -403,16 +412,16 @@
    "changedAt": "2026-11-20"
   },
   "e8": {
-   "hash": "ea1f55179aca",
-   "changedAt": "2026-11-19"
+   "hash": "c31047b88c06",
+   "changedAt": "2026-11-21"
   },
   "e19": {
    "hash": "c81e5aea5b4b",
    "changedAt": "2026-11-19"
   },
   "e26": {
-   "hash": "680f4987336b",
-   "changedAt": "2026-11-20"
+   "hash": "eb357d533b64",
+   "changedAt": "2026-11-21"
   },
   "e1": {
    "hash": null,
@@ -467,8 +476,8 @@
    "changedAt": "2026-11-20"
   },
   "e2": {
-   "hash": "10bd7db8a408",
-   "changedAt": "2026-11-20"
+   "hash": "87df5b25057a",
+   "changedAt": "2026-11-21"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -483,16 +492,16 @@
    "changedAt": "2026-11-16"
   },
   "e22": {
-   "hash": "9faae92024d7",
-   "changedAt": "2026-11-20"
+   "hash": "b7c19702f787",
+   "changedAt": "2026-11-21"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "4340634ab0ce",
-   "changedAt": "2026-11-20"
+   "hash": "321aa62bba44",
+   "changedAt": "2026-11-21"
   },
   "e42": {
    "hash": "45bac9a9ba05",
@@ -728,6 +737,21 @@
    "newProjects": 5,
    "projectValue": 2592619577.9000006,
    "delays": 16,
+   "dataCenters": 6,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 0
+  },
+  {
+   "date": "2026-11-21",
+   "sources": 10,
+   "sourcesOk": 10,
+   "signals": 37,
+   "newSignals": 1,
+   "projects": 186,
+   "newProjects": 8,
+   "projectValue": 2645335934.1000004,
+   "delays": 17,
    "dataCenters": 6,
    "accountsWithLive": 4,
    "discovered": 24,
