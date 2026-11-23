@@ -360,7 +360,9 @@
   "p:chi-101072168": "2026-11-22",
   "p:sea-7160694-BK": "2026-11-22",
   "p:nyc-B01187662": "2026-11-22",
-  "p:nyc-M01288979": "2026-11-22"
+  "p:nyc-M01288979": "2026-11-22",
+  "n:ee46c927e1a6": "2026-11-23",
+  "n:3a498985c892": "2026-11-23"
  },
  "pages": {
   "e33": {
@@ -380,16 +382,16 @@
    "changedAt": null
   },
   "e32": {
-   "hash": "19cb999e0b7c",
-   "changedAt": "2026-11-22"
+   "hash": "b15524f891ec",
+   "changedAt": "2026-11-23"
   },
   "e6": {
    "hash": "a08299a81ebd",
    "changedAt": "2026-11-21"
   },
   "e13": {
-   "hash": "f31a7263d7f6",
-   "changedAt": "2026-11-22"
+   "hash": "0f5c2fe7a9d5",
+   "changedAt": "2026-11-23"
   },
   "e31": {
    "hash": "cde32b366439",
@@ -424,8 +426,8 @@
    "changedAt": "2026-11-22"
   },
   "e26": {
-   "hash": "1a9ebb93cd24",
-   "changedAt": "2026-11-22"
+   "hash": "4118fd3a904e",
+   "changedAt": "2026-11-23"
   },
   "e1": {
    "hash": null,
@@ -480,8 +482,8 @@
    "changedAt": "2026-11-20"
   },
   "e2": {
-   "hash": "c4ed04f583a7",
-   "changedAt": "2026-11-22"
+   "hash": "d1a57e3279b2",
+   "changedAt": "2026-11-23"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -496,16 +498,16 @@
    "changedAt": "2026-11-16"
   },
   "e22": {
-   "hash": "1e582b4f303b",
-   "changedAt": "2026-11-22"
+   "hash": "bd9f32f3f8f6",
+   "changedAt": "2026-11-23"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "0e139326c4e3",
-   "changedAt": "2026-11-22"
+   "hash": "ff4e9b62820f",
+   "changedAt": "2026-11-23"
   },
   "e42": {
    "hash": "45bac9a9ba05",
@@ -772,6 +774,21 @@
    "projectValue": 2623713792.1000004,
    "delays": 15,
    "dataCenters": 6,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 0
+  },
+  {
+   "date": "2026-11-23",
+   "sources": 10,
+   "sourcesOk": 9,
+   "signals": 31,
+   "newSignals": 2,
+   "projects": 162,
+   "newProjects": 0,
+   "projectValue": 1781350915.1000006,
+   "delays": 13,
+   "dataCenters": 0,
    "accountsWithLive": 4,
    "discovered": 24,
    "newDiscovered": 0
