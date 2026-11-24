@@ -362,7 +362,17 @@
   "p:nyc-B01187662": "2026-11-22",
   "p:nyc-M01288979": "2026-11-22",
   "n:ee46c927e1a6": "2026-11-23",
-  "n:3a498985c892": "2026-11-23"
+  "n:3a498985c892": "2026-11-23",
+  "n:891a4ecffeb6": "2026-11-24",
+  "n:fe77419d3275": "2026-11-24",
+  "n:bd5eb7b53131": "2026-11-24",
+  "n:797146cf204a": "2026-11-24",
+  "n:5784882604dc": "2026-11-24",
+  "n:fc43af6bfd03": "2026-11-24",
+  "n:cf7ea9e2fcb8": "2026-11-24",
+  "p:tx-TABS2027006607": "2026-11-24",
+  "p:tx-TABS2027006528": "2026-11-24",
+  "p:tx-TABS2027006540": "2026-11-24"
  },
  "pages": {
   "e33": {
@@ -382,8 +392,8 @@
    "changedAt": null
   },
   "e32": {
-   "hash": "b15524f891ec",
-   "changedAt": "2026-11-23"
+   "hash": "b7cd6903191e",
+   "changedAt": "2026-11-24"
   },
   "e6": {
    "hash": "a08299a81ebd",
@@ -394,8 +404,8 @@
    "changedAt": "2026-11-23"
   },
   "e31": {
-   "hash": "cde32b366439",
-   "changedAt": "2026-11-18"
+   "hash": "86d3145b922f",
+   "changedAt": "2026-11-24"
   },
   "e12": {
    "hash": "1bc0f5b1e498",
@@ -426,8 +436,8 @@
    "changedAt": "2026-11-22"
   },
   "e26": {
-   "hash": "4118fd3a904e",
-   "changedAt": "2026-11-23"
+   "hash": "7539b65b99d0",
+   "changedAt": "2026-11-24"
   },
   "e1": {
    "hash": null,
@@ -482,8 +492,8 @@
    "changedAt": "2026-11-20"
   },
   "e2": {
-   "hash": "d1a57e3279b2",
-   "changedAt": "2026-11-23"
+   "hash": "f841f8b575e7",
+   "changedAt": "2026-11-24"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -498,16 +508,16 @@
    "changedAt": "2026-11-16"
   },
   "e22": {
-   "hash": "bd9f32f3f8f6",
-   "changedAt": "2026-11-23"
+   "hash": "2b044df12ca6",
+   "changedAt": "2026-11-24"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "ff4e9b62820f",
-   "changedAt": "2026-11-23"
+   "hash": "97477de87262",
+   "changedAt": "2026-11-24"
   },
   "e42": {
    "hash": "45bac9a9ba05",
@@ -789,6 +799,21 @@
    "projectValue": 1781350915.1000006,
    "delays": 13,
    "dataCenters": 0,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 0
+  },
+  {
+   "date": "2026-11-24",
+   "sources": 10,
+   "sourcesOk": 10,
+   "signals": 35,
+   "newSignals": 7,
+   "projects": 180,
+   "newProjects": 3,
+   "projectValue": 2553320994.1000004,
+   "delays": 15,
+   "dataCenters": 6,
    "accountsWithLive": 4,
    "discovered": 24,
    "newDiscovered": 0
