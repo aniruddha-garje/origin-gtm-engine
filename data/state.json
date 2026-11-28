@@ -394,7 +394,9 @@
   "n:bf8ab3713097": "2026-11-27",
   "p:nyc-M01472850": "2026-11-27",
   "p:nyc-Q00931838": "2026-11-27",
-  "p:nyc-M01473601": "2026-11-27"
+  "p:nyc-M01473601": "2026-11-27",
+  "n:947da04c42d2": "2026-11-28",
+  "n:8a504d556284": "2026-11-28"
  },
  "pages": {
   "e33": {
@@ -414,8 +416,8 @@
    "changedAt": null
   },
   "e32": {
-   "hash": "b866e510007a",
-   "changedAt": "2026-11-27"
+   "hash": "00e85e058849",
+   "changedAt": "2026-11-28"
   },
   "e6": {
    "hash": "a08299a81ebd",
@@ -454,12 +456,12 @@
    "changedAt": "2026-11-21"
   },
   "e19": {
-   "hash": "c81e5aea5b4b",
-   "changedAt": "2026-11-25"
+   "hash": "326a74a1a4d5",
+   "changedAt": "2026-11-28"
   },
   "e26": {
-   "hash": "eb3cc185cfe3",
-   "changedAt": "2026-11-27"
+   "hash": "f86ac9260d3c",
+   "changedAt": "2026-11-28"
   },
   "e1": {
    "hash": null,
@@ -514,8 +516,8 @@
    "changedAt": "2026-11-20"
   },
   "e2": {
-   "hash": "814a12ac5b4c",
-   "changedAt": "2026-11-27"
+   "hash": "8532f582f1ff",
+   "changedAt": "2026-11-28"
   },
   "e36": {
    "hash": "fc28a545b0e4",
@@ -530,24 +532,24 @@
    "changedAt": "2026-11-25"
   },
   "e22": {
-   "hash": "3f43e9c867cc",
-   "changedAt": "2026-11-27"
+   "hash": "1b4c9099e69a",
+   "changedAt": "2026-11-28"
   },
   "e37": {
    "hash": null,
    "changedAt": null
   },
   "e23": {
-   "hash": "c8cf6224e88f",
-   "changedAt": "2026-11-27"
+   "hash": "60013e449051",
+   "changedAt": "2026-11-28"
   },
   "e42": {
    "hash": "45bac9a9ba05",
    "changedAt": null
   },
   "e35": {
-   "hash": "fe7dfba8a1a6",
-   "changedAt": "2026-11-07"
+   "hash": "140fc568435d",
+   "changedAt": "2026-11-28"
   },
   "e30": {
    "hash": "0994a425d394",
@@ -880,6 +882,21 @@
    "newProjects": 3,
    "projectValue": 2198540637.9000006,
    "delays": 15,
+   "dataCenters": 6,
+   "accountsWithLive": 4,
+   "discovered": 24,
+   "newDiscovered": 0
+  },
+  {
+   "date": "2026-11-28",
+   "sources": 10,
+   "sourcesOk": 10,
+   "signals": 37,
+   "newSignals": 2,
+   "projects": 157,
+   "newProjects": 0,
+   "projectValue": 2157284337.9000006,
+   "delays": 16,
    "dataCenters": 6,
    "accountsWithLive": 4,
    "discovered": 24,
